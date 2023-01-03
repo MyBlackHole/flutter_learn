@@ -29,6 +29,44 @@ class Home extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ElevatedButton(
+            child: const Text('dialog'),
+            onPressed: () {
+              Get.defaultDialog(
+                title: '标题',
+                titleStyle: const TextStyle(color: Colors.red),
+                content: Column(
+                  children: const [
+                    Text('1'),
+                    Text('2'),
+                    Text('3'),
+                    Text('4'),
+                  ],
+                ),
+                cancel: ElevatedButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: const Text('取消'),
+                ),
+                confirm: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    // foregroundColor: Colors.white,
+                    backgroundColor: Colors.black,
+                  ),
+                  onPressed: () {
+                    Get.back();
+                    Get.snackbar('提示', '已确认');
+                  },
+                  child: const Text(
+                    '确认',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+                barrierDismissible: false,
+              );
+            },
+          ),
+          ElevatedButton(
             child: const Text('snackbar'),
             onPressed: () {
               Get.snackbar(
