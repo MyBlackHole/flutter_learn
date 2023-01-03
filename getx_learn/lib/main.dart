@@ -3,8 +3,14 @@ import 'package:get/get.dart';
 import 'package:getx_learn/controller.dart';
 
 void main() {
-  runApp(const GetMaterialApp(
-    home: Home(),
+  runApp(GetMaterialApp(
+    // home: Home(),
+    initialRoute: '/',
+    getPages: [
+      GetPage(name: '/', page: () => const Home()),
+      GetPage(name: '/other', page: () => Other(), transition: Transition.zoom),
+      GetPage(name: '/login', page: () => const Login()),
+    ],
   ));
 }
 
@@ -29,6 +35,12 @@ class Home extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            ElevatedButton(
+              child: const Text('Login'),
+              onPressed: () {
+                Get.toNamed('/login');
+              },
+            ),
             ElevatedButton(
               child: const Text('bottomsheet'),
               onPressed: () {
@@ -132,7 +144,7 @@ class Home extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.to(Other(), fullscreenDialog: true, arguments: {'name':'black hole'});
+                Get.toNamed('/other', arguments: {'name': 'black hole'});
               },
               child: Container(
                 height: 200,
@@ -177,6 +189,21 @@ class Other extends StatelessWidget {
       ),
       body: Center(
         child: Text("${c.count} - - ${Get.arguments['name']}"),
+      ),
+    );
+  }
+}
+
+class Login extends StatelessWidget {
+  const Login({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Container(
+          child: const Text('登陆'),
+        ),
       ),
     );
   }
