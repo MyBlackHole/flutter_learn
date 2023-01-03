@@ -28,6 +28,38 @@ class Home extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          ElevatedButton(
+            child: const Text('snackbar'),
+            onPressed: () {
+              Get.snackbar(
+                '标题', '网络异常',
+                colorText: Colors.white,
+                backgroundColor: Colors.black54,
+                // 显示时间
+                duration: const Duration(seconds: 1),
+                snackPosition: SnackPosition.BOTTOM,
+                titleText: const Text(
+                  '标题',
+                  style: TextStyle(color: Colors.red),
+                ),
+                messageText: Column(
+                  // verticalDirection: VerticalDirection.up,
+                  children: const [
+                    Icon(Icons.add, color: Colors.white),
+                    Icon(Icons.remove, color: Colors.white),
+                    Icon(Icons.list, color: Colors.white),
+                  ],
+                ),
+                icon: const Icon(
+                  Icons.usb_rounded,
+                  color: Colors.white,
+                  size: 35,
+                ),
+                borderWidth: 2.0,
+                borderColor: Colors.red,
+              );
+            },
+          ),
           GestureDetector(
             onTap: () {
               Get.to(Other());
