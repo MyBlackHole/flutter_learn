@@ -33,7 +33,7 @@ class MyHomePage extends StatefulWidget {
 
 class MyHomePageState extends State<MyHomePage> {
   MqttClient? client;
-  var topic = "topic/test";
+  var topic = "flutter/gate/1";
 
   void _publish(String message) {
     final builder = MqttClientPayloadBuilder();
